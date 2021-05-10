@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AgentRepo extends JpaRepository {
+public interface AgentRepo extends JpaRepository<Agent, Long> {
     Agent findById(long id);
     Agent findByName(String name);
     List<Agent> findAllByName(String name);

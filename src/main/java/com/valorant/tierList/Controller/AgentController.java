@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -15,6 +16,11 @@ public class AgentController {
 
     public AgentController(AgentService agentService){
         this.agentService = agentService;
+    }
+
+    public ResponseEntity<Agent> createAgent(@RequestBody Agent agent){
+        Agent newAgent = agentService.createAgent(agent);
+        return new ResponseEntity<>(newAgent, HttpStatus.CREATED);
     }
 
     public ResponseEntity<Agent> readById(@PathVariable("id") long id) throws Exception{

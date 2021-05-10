@@ -14,6 +14,10 @@ public class AgentService {
         this.agentRepo = agentRepo;
     }
 
+    public Agent createAgent(Agent agent){
+        return agentRepo.save(agent);
+    }
+
     public Agent readAgentById(long id){
         return agentRepo.findById(id);
     }
