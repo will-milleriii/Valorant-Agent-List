@@ -4,10 +4,9 @@ import com.valorant.tierList.Entity.Agent;
 import com.valorant.tierList.Service.AgentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class AgentController {
@@ -18,16 +17,24 @@ public class AgentController {
         this.agentService = agentService;
     }
 
+    @PostMapping
     public ResponseEntity<Agent> createAgent(@RequestBody Agent agent){
         Agent newAgent = agentService.createAgent(agent);
         return new ResponseEntity<>(newAgent, HttpStatus.CREATED);
     }
 
+    @GetMapping("/agent/{id}")
     public ResponseEntity<Agent> readById(@PathVariable("id") long id) throws Exception{
         if (new ResponseEntity<>(agentService.readAgentById(id), HttpStatus.OK) == null) throw new Exception("Error! Cannot find Agent by given ID");
         else {
             return new ResponseEntity<Agent>(agentService.readAgentById(id), HttpStatus.OK);
         }
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Agent>> readAllAgents(){
+        List<Agent> agentList = agentService.readAllAgents();
+        return new ResponseEntity<>(agentList, HttpStatus.OK);
     }
 
     @DeleteMapping(path = "{id}")

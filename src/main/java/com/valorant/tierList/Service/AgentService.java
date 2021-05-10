@@ -5,6 +5,8 @@ import com.valorant.tierList.Repository.AgentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AgentService {
     @Autowired
@@ -20,6 +22,15 @@ public class AgentService {
 
     public Agent readAgentById(long id){
         return agentRepo.findById(id);
+    }
+
+    public List<Agent> readAllAgents(){
+        List<Agent> agentList = agentRepo.findAll();
+        if (agentList.size() == 0){
+            return null;
+        } else{
+            return agentList;
+        }
     }
 
     public void deleteAgentById(long id){
