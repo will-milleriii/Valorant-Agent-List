@@ -15,20 +15,20 @@ public class Agent {
     private String role;
     private String origin;
     private String ultimate;
-    private boolean isRadiant;
+    private String radiant;
     private char tier;
 
     public Agent(){}
 
 
 
-    public Agent(long agentId, String name, String role, String origin, String ultimate, boolean isRadiant, char tier) {
+    public Agent(long agentId, String name, String role, String origin, String ultimate, String radiant, char tier) {
         this.agentId = agentId;
         this.name = name;
         this.role = role;
         this.origin = origin;
         this.ultimate = ultimate;
-        this.isRadiant = isRadiant;
+        this.radiant = radiant;
         this.tier = tier;
     }
 
@@ -72,12 +72,12 @@ public class Agent {
         this.ultimate = ultimate;
     }
 
-    public boolean isRadiant() {
-        return isRadiant;
+    public String radiant() {
+        return radiant;
     }
 
-    public void setRadiant(boolean radiant) {
-        isRadiant = radiant;
+    public void setRadiant(String radiant) {
+        this.radiant = radiant;
     }
 
     public char getTier() {

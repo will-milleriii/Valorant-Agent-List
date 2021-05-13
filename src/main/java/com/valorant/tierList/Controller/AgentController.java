@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("valorant/agents")
 public class AgentController {
 
     private AgentService agentService;
@@ -23,11 +24,19 @@ public class AgentController {
         return new ResponseEntity<>(newAgent, HttpStatus.CREATED);
     }
 
-    @GetMapping("/agent/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Agent> readById(@PathVariable("id") long id) throws Exception{
         if (new ResponseEntity<>(agentService.readAgentById(id), HttpStatus.OK) == null) throw new Exception("Error! Cannot find Agent by given ID");
         else {
             return new ResponseEntity<Agent>(agentService.readAgentById(id), HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<Agent> readByName(@PathVariable("name") String name) throws Exception{
+        if (new ResponseEntity<>(agentService.readAgentByName(name), HttpStatus.OK) == null) throw new Exception("Error! No Agent with that name exists");
+        else {
+            return new ResponseEntity<Agent>(agentService.readAgentByName(name), HttpStatus.OK);
         }
     }
 

@@ -24,6 +24,10 @@ public class AgentService {
         return agentRepo.findById(id);
     }
 
+    public Agent readAgentByName(String name){
+        return agentRepo.findByName(name);
+    }
+
     public List<Agent> readAllAgents(){
         List<Agent> agentList = agentRepo.findAll();
         if (agentList.size() == 0){
