@@ -17,7 +17,11 @@ public class AgentService {
     }
 
     public Agent createAgent(Agent agent){
-        return agentRepo.save(agent);
+        if (agentRepo.existsById(agent.getAgentId())){
+            throw new IllegalStateException("Sorry that Agent already exists");
+        } else {
+            return agentRepo.save(agent);
+        }
     }
 
     public Agent readAgentById(long id){
