@@ -42,4 +42,15 @@ public class MapService {
         }
     }
 
+    public void deleteMap(long id){
+        boolean mapExists = mapRepo.existsById(id);
+
+        if (!mapExists){
+            throw new IllegalStateException(
+                    "Map with the id " + id + " does not exist"
+            );
+        }
+        mapRepo.deleteById(id);
+    }
+
 }
