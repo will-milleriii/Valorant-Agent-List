@@ -32,6 +32,14 @@ public class MapController {
         }
     }
 
+    @GetMapping("/name/{name}")
+    public ResponseEntity<Map> readByName(@PathVariable("name") String name) throws Exception{
+        if (new ResponseEntity<>(mapService.readMapByName(name), HttpStatus.OK) == null) throw new Exception("Sorry there is no Map with that name in the System");
+        else {
+            return new ResponseEntity<>(mapService.readMapByName(name), HttpStatus.OK);
+        }
+    }
+
     @GetMapping
     public ResponseEntity<List<Map>> readAllMaps(){
         List<Map> mapList = mapService.readAllMaps();
