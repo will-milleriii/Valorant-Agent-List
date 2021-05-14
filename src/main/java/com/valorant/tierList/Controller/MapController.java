@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/valorant/maps")
 public class MapController {
@@ -28,5 +30,11 @@ public class MapController {
         else{
             return new ResponseEntity<>(mapService.readMapById(id), HttpStatus.OK);
         }
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Map>> readAllMaps(){
+        List<Map> mapList = mapService.readAllMaps();
+        return new ResponseEntity<>(mapList, HttpStatus.OK);
     }
 }
