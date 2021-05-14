@@ -45,4 +45,9 @@ public class MapController {
         List<Map> mapList = mapService.readAllMaps();
         return new ResponseEntity<>(mapList, HttpStatus.OK);
     }
+
+    @DeleteMapping(path = "{id}}")
+    public void deleteById(@PathVariable("id") long id){
+        mapService.deleteMap(id);
+    }
 }
